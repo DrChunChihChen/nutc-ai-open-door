@@ -1,0 +1,1744 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>國立臺中科技大學｜打開另一扇門：AI 跨界造物</title>
+  <link rel="stylesheet" href="_runtime/runtime.css">
+  <style>
+    /* ── 午夜建築師 × 門扉之光主題（覆寫品牌變數，不修改 _runtime） ── */
+    :root {
+      --bg1: #0F172A;
+      --bg2: #090E1A;
+      --bg3: #050811;
+      --cream: #F8FAFC;
+      --gold: #FBBF24;
+      --champ: #38BDF8;
+      --rose: #FB7185;
+      --mint: #34D399;
+      --muted: #94A3B8;
+      --line: rgba(56, 189, 248, .28);
+      --glow-rgb: 56, 189, 248;
+    }
+
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "Inter", sans-serif;
+    }
+    .serif {
+      font-family: "Noto Serif TC", "DFKai-SB", "Microsoft JhengHei", serif;
+    }
+    #chrome {
+      top: 42px;
+      font-size: 20px;
+      letter-spacing: .16em;
+    }
+    #chrome .brandmark {
+      font-size: 24px;
+      letter-spacing: .06em;
+    }
+    #sub {
+      bottom: 46px;
+    }
+    #subbox {
+      background: rgba(8, 13, 25, .82);
+      border: 1px solid rgba(56, 189, 248, .36);
+      font-size: 36px;
+      padding: 13px 34px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .55);
+    }
+    #subbox b {
+      color: var(--gold);
+    }
+
+    .glass {
+      background: linear-gradient(155deg, rgba(30, 41, 59, .78), rgba(12, 19, 34, .88));
+      border: 1px solid rgba(56, 189, 248, .28);
+      border-radius: 26px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .08);
+    }
+
+    .scene {
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hd-block {
+      left: 130px;
+      top: 135px;
+      width: 1660px;
+      opacity: 0;
+    }
+    .hd-block.center {
+      text-align: center;
+    }
+    .hd-eyebrow {
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: .28em;
+      color: var(--champ);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .hd-title {
+      font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+      font-weight: 900;
+      font-size: 62px;
+      line-height: 1.18;
+      color: var(--cream);
+    }
+    .hd-title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    /* ── S01: 簡報碎裂 → 門扉開啟 ── */
+    #ppt-wrap {
+      left: 480px;
+      top: 205px;
+      width: 960px;
+      height: 540px;
+      perspective: 1200px;
+    }
+    .ppt-quad {
+      position: absolute;
+      width: 480px;
+      height: 270px;
+      overflow: hidden;
+    }
+    .ppt-q1 { left: 0; top: 0; }
+    .ppt-q2 { left: 480px; top: 0; }
+    .ppt-q3 { left: 0; top: 270px; }
+    .ppt-q4 { left: 480px; top: 270px; }
+
+    .ppt-sheet {
+      position: absolute;
+      width: 960px;
+      height: 540px;
+      background: #E2E8F0;
+      color: #334155;
+      border-radius: 14px;
+      border: 2px solid #94A3B8;
+      box-shadow: 0 36px 80px rgba(0, 0, 0, .55);
+      overflow: hidden;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    }
+    .ppt-q1 .ppt-sheet { left: 0; top: 0; }
+    .ppt-q2 .ppt-sheet { left: -480px; top: 0; }
+    .ppt-q3 .ppt-sheet { left: 0; top: -270px; }
+    .ppt-q4 .ppt-sheet { left: -480px; top: -270px; }
+
+    .ppt-top {
+      height: 58px;
+      background: #CBD5E1;
+      border-bottom: 1px solid #94A3B8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+    }
+    .ppt-file {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 20px;
+      font-weight: 600;
+      color: #475569;
+    }
+    .ppt-dots {
+      display: flex;
+      gap: 9px;
+    }
+    .ppt-dots i {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #94A3B8;
+      display: block;
+    }
+    .ppt-body {
+      padding: 42px 54px;
+      display: flex;
+      gap: 44px;
+    }
+    .ppt-left {
+      flex: 1.25;
+    }
+    .ppt-h {
+      font-size: 38px;
+      font-weight: 800;
+      color: #1E293B;
+      margin-bottom: 26px;
+      padding-bottom: 14px;
+      border-bottom: 3px solid #94A3B8;
+    }
+    .ppt-li {
+      font-size: 24px;
+      color: #475569;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .ppt-li::before {
+      content: "▪";
+      color: #64748B;
+      font-size: 22px;
+    }
+    .ppt-right {
+      flex: 0.85;
+      background: #CBD5E1;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 14px;
+      border: 1px solid #94A3B8;
+    }
+    .ppt-bar-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 18px;
+      height: 170px;
+      padding: 0 12px;
+      border-bottom: 2px solid #94A3B8;
+    }
+    .ppt-bar-row span {
+      flex: 1;
+      background: #64748B;
+      border-radius: 6px 6px 0 0;
+    }
+    .ppt-cap {
+      text-align: center;
+      font-size: 18px;
+      color: #475569;
+    }
+
+    #ppt-crack {
+      left: 460px;
+      top: 190px;
+      width: 1000px;
+      height: 570px;
+      pointer-events: none;
+    }
+    #ppt-stamp {
+      left: 630px;
+      top: 420px;
+      width: 660px;
+      padding: 18px 28px;
+      border: 6px solid var(--rose);
+      border-radius: 16px;
+      background: rgba(15, 23, 42, .94);
+      color: var(--rose);
+      font-family: "Inter", "Noto Sans TC", sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+      letter-spacing: .10em;
+      text-align: center;
+      white-space: nowrap;
+      box-shadow: 0 24px 60px rgba(251, 113, 133, .35);
+      opacity: 0;
+    }
+
+    #portal-s1 {
+      left: 0;
+      top: 155px;
+      width: 1920px;
+      height: 730px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+    }
+    .portal-stage {
+      display: flex;
+      align-items: center;
+      gap: 88px;
+    }
+    .door-arch {
+      position: relative;
+      width: 280px;
+      height: 450px;
+      border-radius: 140px 140px 16px 16px;
+      border: 3px solid var(--gold);
+      background: radial-gradient(circle at 50% 45%, rgba(251, 191, 36, .65), rgba(56, 189, 248, .25) 55%, rgba(9, 14, 26, .95) 95%);
+      box-shadow: 0 0 110px rgba(251, 191, 36, .35), 0 0 60px rgba(56, 189, 248, .25);
+      perspective: 900px;
+      overflow: visible;
+    }
+    .door-beam {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 720px;
+      height: 520px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center, rgba(251, 191, 36, .28), rgba(56, 189, 248, .08) 50%, transparent 72%);
+      pointer-events: none;
+    }
+    #door-leaf {
+      position: absolute;
+      inset: 12px;
+      border-radius: 128px 128px 10px 10px;
+      background: linear-gradient(160deg, #1E293B, #0B1220);
+      border: 2px solid rgba(56, 189, 248, .55);
+      transform-origin: left center;
+      box-shadow: inset -12px 0 30px rgba(56, 189, 248, .18);
+    }
+    #door-leaf::after {
+      content: "";
+      position: absolute;
+      right: 26px;
+      top: 56%;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 16px var(--gold);
+    }
+    .portal-copy {
+      max-width: 820px;
+    }
+    .portal-copy .eyebrow {
+      color: var(--champ);
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+    .portal-copy .hero {
+      font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+      font-weight: 900;
+      font-size: 112px;
+      line-height: 1.12;
+      color: var(--cream);
+    }
+    .portal-copy .hero span {
+      color: var(--gold);
+    }
+    .portal-copy .desc {
+      margin-top: 22px;
+      font-size: 32px;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    /* ── S02: 三座跨界造物工坊 ── */
+    #s2-cards {
+      left: 130px;
+      top: 295px;
+      width: 1660px;
+      display: flex;
+      gap: 38px;
+    }
+    .studio-card {
+      flex: 1;
+      height: 500px;
+      padding: 28px 30px;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+    }
+    .sc-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 16px;
+      letter-spacing: .16em;
+      color: var(--champ);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .sc-tag b {
+      color: var(--gold);
+    }
+    .sc-title {
+      font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+      font-weight: 900;
+      font-size: 36px;
+      color: var(--cream);
+      margin-bottom: 18px;
+    }
+    .sc-viewport {
+      width: 100%;
+      height: 255px;
+      border-radius: 16px;
+      background: #060B16;
+      border: 1px solid rgba(56, 189, 248, .28);
+      position: relative;
+      overflow: hidden;
+    }
+    .sc-desc {
+      margin-top: 16px;
+      font-size: 19.5px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .sw-code {
+      padding: 16px 20px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #7DD3FC;
+    }
+    .sw-code .kw { color: var(--gold); }
+    .sw-code .fn { color: var(--mint); }
+    .sw-bars {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 18px;
+      height: 92px;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      padding: 12px 14px;
+      background: rgba(15, 23, 42, .85);
+      border-radius: 12px;
+      border: 1px solid rgba(56, 189, 248, .22);
+    }
+    .sw-bar {
+      flex: 1;
+      height: 36px;
+      border-radius: 6px 6px 2px 2px;
+      background: linear-gradient(180deg, var(--champ), rgba(56, 189, 248, .25));
+    }
+    .sw-bar:nth-child(4) {
+      background: linear-gradient(180deg, var(--gold), rgba(251, 191, 36, .25));
+    }
+    .sw-bar:nth-child(5) {
+      background: linear-gradient(180deg, var(--mint), rgba(52, 211, 153, .25));
+    }
+    #s2-badge {
+      left: 490px;
+      top: 825px;
+      width: 940px;
+      text-align: center;
+      padding: 14px 30px;
+      border-radius: 999px;
+      background: rgba(251, 191, 36, .12);
+      border: 1px solid rgba(251, 191, 36, .45);
+      color: var(--gold);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      opacity: 0;
+    }
+
+    /* ── S03: 中科大 1.5 萬師生 × 6 學院星圖 ── */
+    #s3-left {
+      left: 130px;
+      top: 155px;
+      width: 680px;
+      opacity: 0;
+    }
+    #s3-left .hd-eyebrow {
+      font-size: 17px;
+      letter-spacing: .21em;
+      white-space: nowrap;
+    }
+    .s3-node {
+      opacity: 0;
+    }
+    .s3-kpis {
+      display: flex;
+      gap: 28px;
+      margin-top: 26px;
+    }
+    .kpi-box {
+      flex: 1;
+      padding: 24px 26px;
+    }
+    .kpi-val {
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      font-size: 62px;
+      line-height: 1.05;
+    }
+    .kpi-lbl {
+      margin-top: 8px;
+      font-size: 22px;
+      color: var(--muted);
+    }
+    .s3-tracks {
+      display: flex;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .track-pill {
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, .12);
+      border: 1px solid rgba(56, 189, 248, .35);
+      color: var(--cream);
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .s3-strategy {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .strat-no {
+      padding: 15px 22px;
+      border-radius: 16px;
+      background: rgba(251, 113, 133, .08);
+      border: 1px solid rgba(251, 113, 133, .35);
+      color: #FDA4AF;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .strat-yes {
+      padding: 18px 24px;
+      border-radius: 18px;
+      background: linear-gradient(120deg, rgba(251, 191, 36, .18), rgba(56, 189, 248, .14));
+      border: 1px solid rgba(251, 191, 36, .55);
+      color: var(--gold);
+      font-size: 27px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    #s3-hub {
+      left: 840px;
+      top: 150px;
+      width: 950px;
+      height: 730px;
+      opacity: 0;
+    }
+
+    /* ── S04: AI 造物者社群 Live Studio ── */
+    #s4-rules {
+      left: 130px;
+      top: 264px;
+      display: flex;
+      gap: 18px;
+    }
+    .rule-pill {
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 23px;
+      font-weight: 600;
+      opacity: 0;
+    }
+    .rule-pill.no {
+      background: rgba(251, 113, 133, .12);
+      border: 1px solid rgba(251, 113, 133, .42);
+      color: #FDA4AF;
+    }
+    .rule-pill.yes {
+      background: rgba(52, 211, 153, .14);
+      border: 1px solid rgba(52, 211, 153, .45);
+      color: var(--mint);
+    }
+
+    #s4-studio-wrap {
+      left: 130px;
+      top: 338px;
+      width: 1660px;
+      height: 520px;
+      perspective: 1400px;
+    }
+    #s4-studio {
+      width: 1660px;
+      height: 520px;
+      display: flex;
+      gap: 32px;
+      opacity: 0;
+    }
+    .s4-term {
+      flex: 1.02;
+      background: #070C17;
+      border: 1px solid rgba(56, 189, 248, .32);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 36px 80px rgba(0, 0, 0, .55);
+      display: flex;
+      flex-direction: column;
+    }
+    .term-bar {
+      height: 48px;
+      background: #0F172A;
+      border-bottom: 1px solid rgba(56, 189, 248, .22);
+      display: flex;
+      align-items: center;
+      padding: 0 22px;
+      gap: 10px;
+    }
+    .term-bar i {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #FB7185;
+      display: block;
+    }
+    .term-bar i:nth-child(2) { background: #FBBF24; }
+    .term-bar i:nth-child(3) { background: #34D399; }
+    .term-bar span {
+      margin-left: 14px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 16px;
+      color: var(--muted);
+    }
+    .term-body {
+      padding: 30px 32px;
+      font-family: "JetBrains Mono", "Noto Sans TC", monospace;
+      font-size: 21px;
+      line-height: 1.7;
+      color: var(--cream);
+    }
+    .term-cmd {
+      color: var(--champ);
+      margin-bottom: 20px;
+    }
+    .term-log {
+      opacity: 0;
+      margin-bottom: 12px;
+      color: #CBD5E1;
+    }
+    .term-log b { color: var(--mint); }
+
+    .s4-meters {
+      flex: 0.98;
+      padding: 36px 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .meter-hd {
+      font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .meter-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .meter-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 23px;
+      font-weight: 600;
+    }
+    .meter-top span:last-child {
+      font-family: "Inter", sans-serif;
+      color: var(--champ);
+    }
+    .meter-track {
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, .85);
+      border: 1px solid rgba(56, 189, 248, .25);
+      overflow: hidden;
+    }
+    .meter-track i {
+      display: block;
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0284C7, var(--champ), var(--gold));
+    }
+
+    /* ── S05: 引擎一 系辦 × iPAS 微軟體特攻隊 ── */
+    #s5-pipe {
+      left: 130px;
+      top: 295px;
+      width: 1660px;
+      height: 365px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .s5-col-left {
+      width: 430px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pain-card {
+      padding: 18px 22px;
+      border-radius: 16px;
+      background: rgba(30, 41, 59, .78);
+      border: 1px solid rgba(251, 113, 133, .32);
+      font-size: 23px;
+      color: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0;
+    }
+    .pain-card span:last-child {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 16px;
+      color: var(--rose);
+    }
+
+    .s5-center {
+      width: 680px;
+      height: 365px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #cflow5 {
+      position: absolute;
+      inset: 0;
+    }
+    .s5-hub {
+      position: relative;
+      z-index: 2;
+      width: 310px;
+      padding: 26px 24px;
+      border-radius: 24px;
+      text-align: center;
+      background: linear-gradient(155deg, rgba(15, 23, 42, .95), rgba(30, 41, 59, .92));
+      border: 2px solid var(--champ);
+      box-shadow: 0 0 60px rgba(56, 189, 248, .28);
+      opacity: 0;
+    }
+    .s5-hub .t1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--cream);
+    }
+    .s5-hub .t2 {
+      margin-top: 8px;
+      font-size: 19px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .s5-hub .sec {
+      margin-top: 14px;
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(52, 211, 153, .14);
+      border: 1px solid rgba(52, 211, 153, .45);
+      color: var(--mint);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .s5-col-right {
+      width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .app-card {
+      padding: 24px 26px;
+      border-radius: 20px;
+      background: linear-gradient(140deg, rgba(52, 211, 153, .16), rgba(15, 23, 42, .9));
+      border: 1px solid rgba(52, 211, 153, .48);
+      opacity: 0;
+    }
+    .app-card .app-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 14px;
+      color: var(--mint);
+      margin-bottom: 8px;
+    }
+    .app-card .app-name {
+      font-size: 27px;
+      font-weight: 800;
+      color: var(--cream);
+    }
+    .app-card .app-sub {
+      margin-top: 6px;
+      font-size: 19px;
+      color: var(--muted);
+    }
+
+    #s5-cmp {
+      left: 130px;
+      top: 690px;
+      width: 1660px;
+      height: 175px;
+      padding: 24px 36px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      opacity: 0;
+    }
+    .cmp-bars {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .cmp-row {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    .cmp-lbl {
+      width: 190px;
+      font-size: 22px;
+      color: var(--muted);
+    }
+    .cmp-trk {
+      flex: 1;
+      height: 30px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, .85);
+      border: 1px solid rgba(56, 189, 248, .22);
+      overflow: hidden;
+    }
+    .cmp-trk i {
+      display: block;
+      height: 100%;
+      width: 0%;
+      border-radius: 10px;
+    }
+    #s5-b1 i { background: linear-gradient(90deg, #475569, #64748B); }
+    #s5-b2 i { background: linear-gradient(90deg, var(--mint), var(--gold)); }
+    .cmp-hr {
+      width: 130px;
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      text-align: right;
+    }
+    .cmp-stat {
+      width: 390px;
+      text-align: right;
+      border-left: 1px solid rgba(56, 189, 248, .25);
+      padding-left: 32px;
+    }
+    #s5-pct {
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      font-size: 76px;
+      line-height: 1;
+      color: var(--gold);
+    }
+    .cmp-note {
+      margin-top: 10px;
+      font-size: 18px;
+      color: var(--mint);
+      white-space: nowrap;
+    }
+
+    /* ── S06: 引擎二 五專・四技・二技 三扇門 ── */
+    #s6-doors {
+      left: 130px;
+      top: 295px;
+      width: 1660px;
+      height: 560px;
+      display: flex;
+      gap: 38px;
+    }
+    .door-card {
+      flex: 1;
+      border-radius: 170px 170px 26px 26px;
+      padding: 58px 36px 34px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid rgba(56, 189, 248, .35);
+      background: linear-gradient(180deg, rgba(56, 189, 248, .12), rgba(15, 23, 42, .88) 45%);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, .5);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+    }
+    .door-card.mid {
+      border-color: rgba(251, 191, 36, .48);
+      background: linear-gradient(180deg, rgba(251, 191, 36, .14), rgba(15, 23, 42, .9) 45%);
+    }
+    .door-card.right {
+      border-color: rgba(52, 211, 153, .45);
+      background: linear-gradient(180deg, rgba(52, 211, 153, .13), rgba(15, 23, 42, .9) 45%);
+    }
+    .dc-idx {
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: .22em;
+      color: var(--champ);
+      margin-bottom: 10px;
+    }
+    .door-card.mid .dc-idx { color: var(--gold); }
+    .door-card.right .dc-idx { color: var(--mint); }
+    .dc-track {
+      font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+      font-weight: 900;
+      font-size: 54px;
+      color: var(--cream);
+    }
+    .dc-sub {
+      margin-top: 10px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .dc-leap {
+      margin-top: 28px;
+      width: 100%;
+      padding: 20px 22px;
+      border-radius: 18px;
+      background: rgba(6, 11, 22, .72);
+      border: 1px solid rgba(148, 163, 184, .22);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dc-from {
+      font-size: 20px;
+      color: var(--muted);
+    }
+    .dc-arrow {
+      font-size: 22px;
+      color: var(--champ);
+    }
+    .dc-to {
+      font-size: 23px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.4;
+    }
+    .dc-chips {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .dc-chip {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .14);
+      font-size: 18px;
+      color: #E2E8F0;
+    }
+
+    /* ── S07: 三階段路線圖 → 終局金句 ── */
+    #s7-road {
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #s7-beam-wrap {
+      left: 220px;
+      top: 345px;
+      width: 1480px;
+      height: 8px;
+      background: rgba(148, 163, 184, .2);
+      border-radius: 999px;
+      overflow: hidden;
+      opacity: 0;
+    }
+    #s7-beam {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--champ), var(--gold), var(--mint));
+    }
+    #s7-phases {
+      left: 130px;
+      top: 385px;
+      width: 1660px;
+      display: flex;
+      gap: 38px;
+    }
+    .phase-card {
+      flex: 1;
+      padding: 36px 34px;
+      opacity: 0;
+    }
+    .ph-num {
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: .2em;
+      color: var(--champ);
+    }
+    .ph-title {
+      margin-top: 10px;
+      font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+      font-weight: 900;
+      font-size: 40px;
+      color: var(--cream);
+    }
+    .ph-desc {
+      margin-top: 16px;
+      font-size: 24px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .ph-tag {
+      margin-top: 22px;
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(251, 191, 36, .12);
+      border: 1px solid rgba(251, 191, 36, .4);
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    #s7-end {
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+    }
+    .end-glow-door {
+      position: absolute;
+      width: 440px;
+      height: 620px;
+      border-radius: 220px 220px 20px 20px;
+      border: 2px solid rgba(251, 191, 36, .45);
+      background: radial-gradient(circle at 50% 45%, rgba(251, 191, 36, .24), rgba(56, 189, 248, .12) 55%, transparent 78%);
+      box-shadow: 0 0 140px rgba(251, 191, 36, .22);
+    }
+    .end-copy {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 120px;
+    }
+    .end-eyebrow {
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: .32em;
+      color: var(--champ);
+      margin-bottom: 24px;
+      opacity: 0;
+    }
+    .end-lead {
+      font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+      font-weight: 700;
+      font-size: 46px;
+      color: #CBD5E1;
+      margin-bottom: 18px;
+      opacity: 0;
+    }
+    .end-hero {
+      font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+      font-weight: 900;
+      font-size: 108px;
+      line-height: 1.15;
+      color: var(--cream);
+      text-shadow: 0 12px 48px rgba(0, 0, 0, .65);
+      opacity: 0;
+    }
+    .end-hero em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .end-sub {
+      margin-top: 28px;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      letter-spacing: .24em;
+      color: var(--muted);
+      opacity: 0;
+    }
+
+    /* ── 底部 4px 確定性時間進度條 (y = 1076px) ── */
+    #prog-track {
+      left: 0;
+      top: 1076px;
+      width: 1920px;
+      height: 4px;
+      background: rgba(148, 163, 184, .14);
+      pointer-events: none;
+      z-index: 40;
+    }
+    #prog-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(56, 189, 248, .85), var(--champ) 48%, var(--gold));
+      box-shadow: 0 0 12px rgba(251, 191, 36, .42);
+    }
+  </style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- ══ SCENE 1: PPT 碎裂 → 打開另一扇門 ══ -->
+  <div id="sc1" class="abs scene">
+    <div id="ppt-wrap" class="abs">
+      <div class="ppt-quad ppt-q1"><div class="ppt-sheet">
+        <div class="ppt-top"><span class="ppt-file">AI_教學簡報_v3_final.pptx</span><div class="ppt-dots"><i></i><i></i><i></i></div></div>
+        <div class="ppt-body"><div class="ppt-left"><div class="ppt-h">年度 AI 導入報告</div><div class="ppt-li">第一點：AI 協助生成簡報大綱</div><div class="ppt-li">第二點：自動排版投影片與公文</div><div class="ppt-li">第三點：繳交書面結案成果</div></div><div class="ppt-right"><div class="ppt-bar-row"><span style="height:40%"></span><span style="height:68%"></span><span style="height:52%"></span><span style="height:82%"></span></div><div class="ppt-cap">靜態報告圖表.png</div></div></div>
+      </div></div>
+      <div class="ppt-quad ppt-q2"><div class="ppt-sheet">
+        <div class="ppt-top"><span class="ppt-file">AI_教學簡報_v3_final.pptx</span><div class="ppt-dots"><i></i><i></i><i></i></div></div>
+        <div class="ppt-body"><div class="ppt-left"><div class="ppt-h">年度 AI 導入報告</div><div class="ppt-li">第一點：AI 協助生成簡報大綱</div><div class="ppt-li">第二點：自動排版投影片與公文</div><div class="ppt-li">第三點：繳交書面結案成果</div></div><div class="ppt-right"><div class="ppt-bar-row"><span style="height:40%"></span><span style="height:68%"></span><span style="height:52%"></span><span style="height:82%"></span></div><div class="ppt-cap">靜態報告圖表.png</div></div></div>
+      </div></div>
+      <div class="ppt-quad ppt-q3"><div class="ppt-sheet">
+        <div class="ppt-top"><span class="ppt-file">AI_教學簡報_v3_final.pptx</span><div class="ppt-dots"><i></i><i></i><i></i></div></div>
+        <div class="ppt-body"><div class="ppt-left"><div class="ppt-h">年度 AI 導入報告</div><div class="ppt-li">第一點：AI 協助生成簡報大綱</div><div class="ppt-li">第二點：自動排版投影片與公文</div><div class="ppt-li">第三點：繳交書面結案成果</div></div><div class="ppt-right"><div class="ppt-bar-row"><span style="height:40%"></span><span style="height:68%"></span><span style="height:52%"></span><span style="height:82%"></span></div><div class="ppt-cap">靜態報告圖表.png</div></div></div>
+      </div></div>
+      <div class="ppt-quad ppt-q4"><div class="ppt-sheet">
+        <div class="ppt-top"><span class="ppt-file">AI_教學簡報_v3_final.pptx</span><div class="ppt-dots"><i></i><i></i><i></i></div></div>
+        <div class="ppt-body"><div class="ppt-left"><div class="ppt-h">年度 AI 導入報告</div><div class="ppt-li">第一點：AI 協助生成簡報大綱</div><div class="ppt-li">第二點：自動排版投影片與公文</div><div class="ppt-li">第三點：繳交書面結案成果</div></div><div class="ppt-right"><div class="ppt-bar-row"><span style="height:40%"></span><span style="height:68%"></span><span style="height:52%"></span><span style="height:82%"></span></div><div class="ppt-cap">靜態報告圖表.png</div></div></div>
+      </div></div>
+    </div>
+
+    <svg id="ppt-crack" class="abs" viewBox="0 0 1000 570">
+      <path id="crack-line" d="M 140 70 L 340 205 L 495 270 L 660 365 L 870 505 M 820 90 L 580 220 L 495 270 L 320 400 L 180 510"
+            fill="none" stroke="#FB7185" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"
+            stroke-dasharray="1800" stroke-dashoffset="1800"/>
+    </svg>
+    <div id="ppt-stamp" class="abs">NOT THIS WAY · 非真正轉型</div>
+
+    <div id="portal-s1" class="abs">
+      <div class="portal-stage">
+        <div class="door-arch">
+          <div class="door-beam"></div>
+          <div id="door-leaf"></div>
+        </div>
+        <div class="portal-copy">
+          <div class="eyebrow">OPEN ANOTHER DOOR</div>
+          <div class="hero">打開<span>另一扇門</span></div>
+          <div class="desc">不是加速舊文書，而是用 AI 做出從沒做過的真實作品</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCENE 2: 三座跨界造物工坊 ══ -->
+  <div id="sc2" class="abs scene">
+    <div class="abs hd-block center">
+      <div class="hd-eyebrow">TANGIBLE CREATION · 跨界做出從未做過的事物</div>
+      <div class="hd-title">跨越領域的這一刻，<em>人的思維才真正升級</em></div>
+    </div>
+
+    <div id="s2-cards" class="abs">
+      <div class="studio-card glass" id="s2-c1">
+        <div class="sc-tag"><span>01 // SOFTWARE</span><b>LIVE APP</b></div>
+        <div class="sc-title">互動軟體造物</div>
+        <div class="sc-viewport">
+          <div class="sw-code">
+            <div><span class="kw">const</span> workflow = <span class="fn">buildAgent</span>({</div>
+            <div>&nbsp;&nbsp;domain: <span style="color:#FBBF24">"NUTC_Dept"</span>,</div>
+            <div>&nbsp;&nbsp;output: <span style="color:#34D399">"LiveWebTool"</span></div>
+            <div>});</div>
+          </div>
+          <div class="sw-bars">
+            <div class="sw-bar"></div><div class="sw-bar"></div><div class="sw-bar"></div><div class="sw-bar"></div><div class="sw-bar"></div>
+          </div>
+        </div>
+        <div class="sc-desc">沒寫過程式的人，親手打造能解決痛點的即時系統。</div>
+        <div class="sheen"></div>
+      </div>
+
+      <div class="studio-card glass" id="s2-c2">
+        <div class="sc-tag"><span>02 // SPATIAL 3D</span><b>MESH ENGINE</b></div>
+        <div class="sc-title">空間視覺與 3D</div>
+        <div class="sc-viewport">
+          <canvas id="c3d" width="460" height="255"></canvas>
+        </div>
+        <div class="sc-desc">設計與非技術背景跨入三維空間構圖與互動建模。</div>
+        <div class="sheen"></div>
+      </div>
+
+      <div class="studio-card glass" id="s2-c3">
+        <div class="sc-tag"><span>03 // CODE FILM</span><b>GSAP + EARSHOT</b></div>
+        <div class="sc-title">程式編排動態影像</div>
+        <div class="sc-viewport">
+          <canvas id="cwave" width="460" height="255"></canvas>
+        </div>
+        <div class="sc-desc">沒拍過片的人，也能用程式碼精密編排影像與聲音。</div>
+        <div class="sheen"></div>
+      </div>
+    </div>
+
+    <div id="s2-badge" class="abs">跨進陌生領域 → 解鎖全新技能與思考維度</div>
+  </div>
+
+  <!-- ══ SCENE 3: 臺中科大體質 × 6 學院星圖 ══ -->
+  <div id="sc3" class="abs scene">
+    <div id="s3-left" class="abs">
+      <div class="hd-eyebrow">NATIONAL TAICHUNG UNIV. OF SCIENCE &amp; TECH.</div>
+      <div class="hd-title" style="font-size:56px">立足中科大真實體質</div>
+
+      <div class="s3-kpis">
+        <div class="kpi-box glass">
+          <div class="kpi-val gold num" id="s3-stu">0</div>
+          <div class="kpi-lbl">全校師生規模</div>
+        </div>
+        <div class="kpi-box glass">
+          <div class="kpi-val champ num" id="s3-col">0</div>
+          <div class="kpi-lbl">跨領域學術學院</div>
+        </div>
+      </div>
+
+      <div class="s3-tracks">
+        <span class="track-pill">五專部</span>
+        <span class="track-pill">四技部</span>
+        <span class="track-pill">二技部</span>
+        <span class="track-pill" style="border-color:rgba(251,191,36,.4);color:var(--gold)">非電資理工佔多數</span>
+      </div>
+
+      <div class="s3-strategy">
+        <div class="strat-no" id="s3-no1"><span>✗</span><span style="text-decoration:line-through">不打昂貴硬體算力軍備戰</span></div>
+        <div class="strat-no" id="s3-no2"><span>✗</span><span style="text-decoration:line-through">不開脫離實務的純論文課</span></div>
+        <div class="strat-yes" id="s3-yes"><span>✓</span><span>以「跨界造物」啟動校務發展雙引擎</span><div class="sheen"></div></div>
+      </div>
+    </div>
+
+    <div id="s3-hub" class="abs">
+      <svg viewBox="0 0 950 730" width="950" height="730">
+        <defs>
+          <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FBBF24" stop-opacity="0.32"/>
+            <stop offset="65%" stop-color="#38BDF8" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#090E1A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="475" cy="365" r="300" fill="url(#hubGlow)"/>
+        <circle id="s3-ring" cx="475" cy="365" r="245" fill="none" stroke="rgba(56,189,248,0.28)" stroke-width="2" stroke-dasharray="10 10"/>
+        <!-- 6 條輻射連線 -->
+        <line class="s3-spoke" x1="475" y1="365" x2="475" y2="120" stroke="#38BDF8" stroke-width="3" stroke-dasharray="260" stroke-dashoffset="260"/>
+        <line class="s3-spoke" x1="475" y1="365" x2="687" y2="242" stroke="#38BDF8" stroke-width="3" stroke-dasharray="260" stroke-dashoffset="260"/>
+        <line class="s3-spoke" x1="475" y1="365" x2="687" y2="488" stroke="#38BDF8" stroke-width="3" stroke-dasharray="260" stroke-dashoffset="260"/>
+        <line class="s3-spoke" x1="475" y1="365" x2="475" y2="610" stroke="#38BDF8" stroke-width="3" stroke-dasharray="260" stroke-dashoffset="260"/>
+        <line class="s3-spoke" x1="475" y1="365" x2="263" y2="488" stroke="#38BDF8" stroke-width="3" stroke-dasharray="260" stroke-dashoffset="260"/>
+        <line class="s3-spoke" x1="475" y1="365" x2="263" y2="242" stroke="#38BDF8" stroke-width="3" stroke-dasharray="260" stroke-dashoffset="260"/>
+
+        <!-- 中心節點 -->
+        <g id="s3-center-node">
+          <circle cx="475" cy="365" r="92" fill="#0F172A" stroke="#FBBF24" stroke-width="4"/>
+          <text x="475" y="355" text-anchor="middle" fill="#FBBF24" font-size="24" font-weight="800" font-family="Noto Sans TC">NUTC</text>
+          <text x="475" y="392" text-anchor="middle" fill="#F8FAFC" font-size="27" font-weight="800" font-family="Noto Serif TC">造物樞紐</text>
+        </g>
+
+        <!-- 6 大學院節點 -->
+        <g class="s3-node" transform="translate(475,120)">
+          <rect x="-105" y="-34" width="210" height="68" rx="34" fill="#131F36" stroke="#38BDF8" stroke-width="2.5"/>
+          <text x="0" y="9" text-anchor="middle" fill="#F8FAFC" font-size="26" font-weight="700" font-family="Noto Sans TC">商學院</text>
+        </g>
+        <g class="s3-node" transform="translate(687,242)">
+          <rect x="-105" y="-34" width="210" height="68" rx="34" fill="#131F36" stroke="#38BDF8" stroke-width="2.5"/>
+          <text x="0" y="9" text-anchor="middle" fill="#F8FAFC" font-size="26" font-weight="700" font-family="Noto Sans TC">設計學院</text>
+        </g>
+        <g class="s3-node" transform="translate(687,488)">
+          <rect x="-105" y="-34" width="210" height="68" rx="34" fill="#131F36" stroke="#38BDF8" stroke-width="2.5"/>
+          <text x="0" y="9" text-anchor="middle" fill="#F8FAFC" font-size="26" font-weight="700" font-family="Noto Sans TC">語文學院</text>
+        </g>
+        <g class="s3-node" transform="translate(475,610)">
+          <rect x="-125" y="-34" width="250" height="68" rx="34" fill="#131F36" stroke="#FBBF24" stroke-width="2.5"/>
+          <text x="0" y="9" text-anchor="middle" fill="#FBBF24" font-size="25" font-weight="700" font-family="Noto Sans TC">資訊與流通學院</text>
+        </g>
+        <g class="s3-node" transform="translate(263,488)">
+          <rect x="-118" y="-34" width="236" height="68" rx="34" fill="#131F36" stroke="#34D399" stroke-width="2.5"/>
+          <text x="0" y="9" text-anchor="middle" fill="#F8FAFC" font-size="25" font-weight="700" font-family="Noto Sans TC">中護健康學院</text>
+        </g>
+        <g class="s3-node" transform="translate(263,242)">
+          <rect x="-118" y="-34" width="236" height="68" rx="34" fill="#131F36" stroke="#38BDF8" stroke-width="2.5"/>
+          <text x="0" y="9" text-anchor="middle" fill="#F8FAFC" font-size="25" font-weight="700" font-family="Noto Sans TC">智慧產業學院</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ══ SCENE 4: AI 跨界造物者社群 Live Studio ══ -->
+  <div id="sc4" class="abs scene">
+    <div class="abs hd-block">
+      <div class="hd-eyebrow">CORE HUB · 跨院實戰教師共同體</div>
+      <div class="hd-title">AI 跨界<em>造物者社群</em>（Builders Guild）</div>
+    </div>
+
+    <div id="s4-rules" class="abs">
+      <div class="rule-pill no" id="r-p1">✗ 不談空泛純論文</div>
+      <div class="rule-pill no" id="r-p2">✗ 禁交靜態簡報檔</div>
+      <div class="rule-pill yes" id="r-p3">✓ 每月 30 分鐘 Frontier Live Build Demo</div>
+    </div>
+
+    <div id="s4-studio-wrap" class="abs">
+      <div id="s4-studio">
+        <div class="s4-term">
+          <div class="term-bar"><i></i><i></i><i></i><span>nutc-builders-guild // live-demo.sh</span></div>
+          <div class="term-body">
+            <div class="term-cmd">&gt; <span id="s4-cmd"></span><span class="caret"></span></div>
+            <div class="term-log" id="s4-l1"><b>[LIVE]</b> 實測最新模型邊界：Carbon / Astra 深度推理</div>
+            <div class="term-log" id="s4-l2"><b>[BUILD]</b> 跨 6 院 8–12 位教師，現場輸出軟體・3D・短片</div>
+            <div class="term-log" id="s4-l3"><b>[SHIP]</b> 每月產出全校《實戰情報》與 3 小時外掛挑戰包</div>
+          </div>
+        </div>
+
+        <div class="s4-meters glass">
+          <div class="meter-hd">前沿實戰能力邊界 · 每月更新</div>
+          <div class="meter-item">
+            <div class="meter-top"><span>Frontier Agents &amp; 系統快速開發</span><span>95%</span></div>
+            <div class="meter-track" id="m-b1"><i></i></div>
+          </div>
+          <div class="meter-item">
+            <div class="meter-top"><span>Generative 3D 空間視覺生成</span><span>88%</span></div>
+            <div class="meter-track" id="m-b2"><i></i></div>
+          </div>
+          <div class="meter-item">
+            <div class="meter-top"><span>Code-Driven 動態影音與配樂</span><span>92%</span></div>
+            <div class="meter-track" id="m-b3"><i></i></div>
+          </div>
+          <div class="sheen"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCENE 5: 引擎一 系辦 × iPAS 微軟體特攻隊 ══ -->
+  <div id="sc5" class="abs scene">
+    <div class="abs hd-block">
+      <div class="hd-eyebrow">ENGINE 01 · 行政端微轉型落地</div>
+      <div class="hd-title">系辦 × <em>iPAS 學生</em>微軟體特攻隊</div>
+    </div>
+
+    <div id="s5-pipe" class="abs">
+      <div class="s5-col-left">
+        <div class="pain-card" id="p-1"><span>修課／抵免法規重複問答</span><span>PAIN 01</span></div>
+        <div class="pain-card" id="p-2"><span>空白實習合約格式檢核</span><span>PAIN 02</span></div>
+        <div class="pain-card" id="p-3"><span>系所評鑑佐證資料彙整</span><span>PAIN 03</span></div>
+        <div class="pain-card" id="p-4"><span>活動海報與新聞稿排程</span><span>PAIN 04</span></div>
+      </div>
+
+      <div class="s5-center">
+        <canvas id="cflow5" width="680" height="365"></canvas>
+        <div class="s5-hub" id="s5-hub">
+          <div class="t1">系辦 × iPAS 特攻隊</div>
+          <div class="t2">6 週敏捷微改造</div>
+          <div class="sec">✓ 資安沙盒 · 嚴禁個資外流</div>
+        </div>
+      </div>
+
+      <div class="s5-col-right">
+        <div class="app-card" id="a-1">
+          <div class="app-top"><span>MICRO-APP 01</span><span>● LIVE IN USE</span></div>
+          <div class="app-name">24 小時系規知識庫助教</div>
+          <div class="app-sub">自動回覆修課與畢業門檻查詢</div>
+        </div>
+        <div class="app-card" id="a-2">
+          <div class="app-top"><span>MICRO-APP 02</span><span>● LIVE IN USE</span></div>
+          <div class="app-name">表單檢核與宣傳自動化工具</div>
+          <div class="app-sub">學生賺取硬核實戰開發履歷</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="s5-cmp" class="abs glass">
+      <div class="cmp-bars">
+        <div class="cmp-row">
+          <div class="cmp-lbl">改造前重複事務</div>
+          <div class="cmp-trk" id="s5-b1"><i></i></div>
+          <div class="cmp-hr" style="color:var(--muted)">10.0 hr/週</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-lbl" style="color:var(--cream)">微軟體上線後</div>
+          <div class="cmp-trk" id="s5-b2"><i></i></div>
+          <div class="cmp-hr" style="color:var(--mint)">3.0 hr/週</div>
+        </div>
+      </div>
+      <div class="cmp-stat">
+        <div id="s5-pct">0%</div>
+        <div class="cmp-note">重複工時減幅 · 期末微行政造物大賞</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCENE 6: 引擎二 五專・四技・二技 三扇門 ══ -->
+  <div id="sc6" class="abs scene">
+    <div class="abs hd-block center">
+      <div class="hd-eyebrow">ENGINE 02 · 不強改 18 學分大課綱</div>
+      <div class="hd-title">三學制「<em>3 小時跨門挑戰</em>」外掛模組</div>
+    </div>
+
+    <div id="s6-doors" class="abs">
+      <div class="door-card" id="d-1">
+        <div class="dc-idx">TRACK 01</div>
+        <div class="dc-track">五專部</div>
+        <div class="dc-sub">空間視覺與互動創作</div>
+        <div class="dc-leap">
+          <div class="dc-from">平面作業與零程式基礎</div>
+          <div class="dc-arrow">↓ 跨過這扇門</div>
+          <div class="dc-to">AI 3D 建模輔助<br>＋ 個人互動網頁作品</div>
+        </div>
+        <div class="dc-chips"><span class="dc-chip">3D 體感</span><span class="dc-chip">動態海報</span></div>
+        <div class="sheen"></div>
+      </div>
+
+      <div class="door-card mid" id="d-2">
+        <div class="dc-idx">TRACK 02</div>
+        <div class="dc-track">四技部</div>
+        <div class="dc-sub">專題產品化 × iPAS</div>
+        <div class="dc-leap">
+          <div class="dc-from">傳統紙上畢業專題</div>
+          <div class="dc-arrow">↓ 跨過這扇門</div>
+          <div class="dc-to">真實可運作系統原型<br>＋ iPAS 國家能力鑑定</div>
+        </div>
+        <div class="dc-chips"><span class="dc-chip">真實產品</span><span class="dc-chip">iPAS 實戰</span></div>
+        <div class="sheen"></div>
+      </div>
+
+      <div class="door-card right" id="d-3">
+        <div class="dc-idx">TRACK 03</div>
+        <div class="dc-track">二技部</div>
+        <div class="dc-sub">職場自動化代理</div>
+        <div class="dc-leap">
+          <div class="dc-from">重複手工作業流程</div>
+          <div class="dc-arrow">↓ 跨過這扇門</div>
+          <div class="dc-to">商管／設計／護理<br>即戰力 AI Agent 管線</div>
+        </div>
+        <div class="dc-chips"><span class="dc-chip">商管 BI</span><span class="dc-chip">護理／設計</span></div>
+        <div class="sheen"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCENE 7: 三階段路線圖 → 終局金句 ══ -->
+  <div id="sc7" class="abs scene">
+    <div id="s7-road" class="abs">
+      <div class="abs hd-block center">
+        <div class="hd-eyebrow">IMPLEMENTATION ROADMAP · 1.5 – 2 年滾動式立項</div>
+        <div class="hd-title">從游擊試點走向<em>制度化造物生態</em></div>
+      </div>
+      <div id="s7-beam-wrap" class="abs"><div id="s7-beam"></div></div>
+      <div id="s7-phases" class="abs">
+        <div class="phase-card glass" id="ph-1">
+          <div class="ph-num">PHASE 01 · 第 1 學期</div>
+          <div class="ph-title">點火打樣期</div>
+          <div class="ph-desc">成立造物者社群，挑選 3 個系辦配對學生打造每天真實上線的微軟體。</div>
+          <div class="ph-tag">3 系辦實證案例</div>
+        </div>
+        <div class="phase-card glass" id="ph-2">
+          <div class="ph-num">PHASE 02 · 第 2 學期</div>
+          <div class="ph-title">校發立項期</div>
+          <div class="ph-desc">攜實測減負數據寫入校務發展計畫，擴展至 6 院 12 系與 API 共享額度池。</div>
+          <div class="ph-tag">高教深耕正式預算</div>
+        </div>
+        <div class="phase-card glass" id="ph-3">
+          <div class="ph-num">PHASE 03 · 第 2 學年</div>
+          <div class="ph-title">全校造物大賞</div>
+          <div class="ph-desc">舉辦全校跨界造物競賽，以真實產出換取旗艦模型額度並外溢在地產學。</div>
+          <div class="ph-tag">以作品換取算力資源</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="s7-end" class="abs">
+      <div class="end-glow-door"></div>
+      <div class="end-copy">
+        <div class="end-eyebrow">NATIONAL TAICHUNG UNIVERSITY OF SCIENCE AND TECHNOLOGY</div>
+        <div class="end-lead">別再用 AI 做舊時代的簡報</div>
+        <div class="end-hero">在臺中科大，<em>打開另一扇門。</em></div>
+        <div class="end-sub">OPEN ANOTHER DOOR · BUILD WHAT YOU NEVER BUILT</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 底部 4px 時間軸進度條 ══ -->
+  <div id="prog-track" class="abs"><div id="prog-bar"></div></div>
+
+</div>
+
+<script src="_runtime/gsap.min.js"></script>
+<script src="_tl.js"></script>
+<script src="_runtime/core.js"></script>
+<script>
+window.EPISODE = {
+  strings: { zh: {} },
+
+  build(c) {
+    const { m, S, L, LE, LM } = c;
+    m.set(".scene", { opacity: 0 }, 0);
+
+    // ══ SCENE 1: 簡報碎裂 → 打開另一扇門 ══
+    m.set("#sc1", { opacity: 1 }, S(0).start);
+    m.fromTo("#ppt-wrap", { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "expo.out" }, S(0).start);
+    m.to("#crack-line", { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, L(0, 1) + 0.1);
+    m.fromTo("#ppt-stamp", { opacity: 0, scale: 2.3, rotation: -14 }, { opacity: 1, scale: 1, rotation: -8, duration: 0.45, ease: "back.out(2.2)" }, LM(0, 1, 0.52));
+
+    const shatterT = L(0, 2) - 0.12;
+    m.to(["#ppt-crack", "#ppt-stamp"], { opacity: 0, scale: 1.15, duration: 0.25, ease: "power2.in" }, shatterT);
+    m.to(".ppt-q1", { x: -340, y: -210, rotation: -16, scale: 0.7, opacity: 0, filter: "blur(8px)", duration: 0.65, ease: "power3.out" }, shatterT);
+    m.to(".ppt-q2", { x: 340, y: -190, rotation: 18, scale: 0.7, opacity: 0, filter: "blur(8px)", duration: 0.65, ease: "power3.out" }, shatterT);
+    m.to(".ppt-q3", { x: -320, y: 210, rotation: 15, scale: 0.7, opacity: 0, filter: "blur(8px)", duration: 0.65, ease: "power3.out" }, shatterT);
+    m.to(".ppt-q4", { x: 340, y: 220, rotation: -17, scale: 0.7, opacity: 0, filter: "blur(8px)", duration: 0.65, ease: "power3.out" }, shatterT);
+
+    m.fromTo("#portal-s1", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.85, ease: "expo.out" }, shatterT + 0.18);
+    m.fromTo("#door-leaf", { rotationY: 0 }, { rotationY: -68, duration: 1.25, ease: "expo.out" }, shatterT + 0.25);
+    c.out("#sc1", S(1).start - 0.35, 0.35);
+
+    // ══ SCENE 2: 三座跨界造物工坊 ══
+    m.set("#sc2", { opacity: 1 }, S(1).start - 0.05);
+    c.rise("#sc2 .hd-block", S(1).start, 0.8, 36);
+    m.fromTo("#s2-c1", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.75, ease: "expo.out" }, LM(1, 0, 0.45));
+    c.sheen("#s2-c1", L(1, 1) + 0.15);
+    m.fromTo("#s2-c2", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.75, ease: "expo.out" }, LM(1, 0, 0.85));
+    c.sheen("#s2-c2", LM(1, 1, 0.75));
+    m.fromTo("#s2-c3", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.75, ease: "expo.out" }, LM(1, 1, 0.7));
+    c.sheen("#s2-c3", L(1, 2) + 0.25);
+    c.rise("#s2-badge", L(1, 3) - 0.05, 0.7, 25);
+    c.out("#sc2", S(2).start - 0.35, 0.35);
+
+    // ══ SCENE 3: 中科大 1.5 萬師生 × 6 學院星圖 ══
+    m.set("#sc3", { opacity: 1 }, S(2).start - 0.05);
+    c.rise("#s3-left", S(2).start, 0.75, 35);
+    c.count("#s3-stu", 0, 15600, L(2, 0) + 0.1, 1.4, v => Math.round(v).toLocaleString() + "+");
+    c.count("#s3-col", 0, 6, L(2, 0) + 0.3, 1.0, v => Math.round(v));
+
+    m.fromTo("#s3-hub", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" }, L(2, 0) + 0.2);
+    m.to(".s3-spoke", { strokeDashoffset: 0, duration: 0.85, stagger: 0.08, ease: "power2.out" }, L(2, 0) + 0.45);
+    m.fromTo(".s3-node", { opacity: 0, scale: 0.75 }, { opacity: 1, scale: 1, duration: 0.55, stagger: 0.08, ease: "back.out(1.8)" }, L(2, 1) - 0.1);
+
+    m.fromTo(["#s3-no1", "#s3-no2"], { opacity: 0, x: -30 }, { opacity: 0.78, x: 0, duration: 0.55, stagger: 0.18, ease: "power2.out" }, L(2, 2));
+    m.fromTo("#s3-yes", { opacity: 0, y: 24, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "expo.out" }, L(2, 3) - 0.05);
+    c.sheen("#s3-yes", L(2, 3) + 0.3);
+    c.out("#sc3", S(3).start - 0.35, 0.35);
+
+    // ══ SCENE 4: AI 跨界造物者社群 Live Studio ══
+    m.set("#sc4", { opacity: 1 }, S(3).start - 0.05);
+    c.rise("#sc4 .hd-block", S(3).start, 0.75, 35);
+    c.tilt("#s4-studio", LM(3, 0, 0.42), 1.0);
+    c.type("#s4-cmd", "nutc-guild build --frontier --no-ppt", LM(3, 0, 0.72), 1.35);
+    m.fromTo(["#r-p1", "#r-p2", "#r-p3"], { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.14, ease: "power3.out" }, L(3, 1) - 0.1);
+    m.fromTo(["#s4-l1", "#s4-l2", "#s4-l3"], { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, stagger: 0.45, ease: "power2.out" }, L(3, 2));
+    c.bar("#m-b1 i", 95, L(3, 2) + 0.15, 1.1);
+    c.bar("#m-b2 i", 88, L(3, 2) + 0.45, 1.1);
+    c.bar("#m-b3 i", 92, L(3, 3) - 0.1, 1.1);
+    c.sheen(".s4-meters", L(3, 3) + 0.25);
+    c.out("#sc4", S(4).start - 0.35, 0.35);
+
+    // ══ SCENE 5: 引擎一 系辦 × iPAS 微軟體特攻隊 ══
+    m.set("#sc5", { opacity: 1 }, S(4).start - 0.05);
+    c.rise("#sc5 .hd-block", S(4).start, 0.75, 35);
+    m.fromTo("#s5-hub", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.6)" }, L(4, 0) + 0.15);
+    m.fromTo(["#p-1", "#p-2", "#p-3", "#p-4"], { opacity: 0, x: -35 }, { opacity: 1, x: 0, duration: 0.5, stagger: 0.12, ease: "power3.out" }, L(4, 1) - 0.1);
+    m.fromTo(["#a-1", "#a-2"], { opacity: 0, x: 35 }, { opacity: 1, x: 0, duration: 0.6, stagger: 0.25, ease: "expo.out" }, L(4, 2));
+    m.fromTo("#s5-cmp", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.65, ease: "expo.out" }, L(4, 3) - 0.15);
+    c.bar("#s5-b1 i", 100, L(4, 3), 1.0);
+    c.bar("#s5-b2 i", 30, L(4, 3) + 0.2, 1.15);
+    c.count("#s5-pct", 0, -70, L(4, 3) + 0.1, 1.25, v => Math.round(v) + "%");
+    c.out("#sc5", S(5).start - 0.35, 0.35);
+
+    // ══ SCENE 6: 引擎二 五專・四技・二技 三扇門 ══
+    m.set("#sc6", { opacity: 1 }, S(5).start - 0.05);
+    c.rise("#sc6 .hd-block", S(5).start, 0.75, 35);
+    m.fromTo("#d-1", { opacity: 0, y: 70, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "expo.out" }, LM(5, 0, 0.48));
+    c.sheen("#d-1", L(5, 1));
+    m.fromTo("#d-2", { opacity: 0, y: 70, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "expo.out" }, L(5, 1) - 0.05);
+    c.sheen("#d-2", LM(5, 1, 0.55));
+    m.fromTo("#d-3", { opacity: 0, y: 70, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "expo.out" }, LM(5, 1, 0.65));
+    c.sheen("#d-3", L(5, 2) + 0.25);
+    c.out("#sc6", S(6).start - 0.35, 0.35);
+
+    // ══ SCENE 7: 三階段路線圖 → 終局金句 ══
+    m.set("#sc7", { opacity: 1 }, S(6).start - 0.05);
+    c.rise("#s7-road .hd-block", S(6).start, 0.75, 35);
+    m.fromTo("#s7-beam-wrap", { opacity: 0 }, { opacity: 1, duration: 0.45 }, L(6, 0));
+    m.to("#s7-beam", { width: "100%", duration: 3.4, ease: "power2.inOut" }, L(6, 0) + 0.2);
+    m.fromTo("#ph-1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.65, ease: "expo.out" }, L(6, 0) + 0.1);
+    m.fromTo("#ph-2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.65, ease: "expo.out" }, LM(6, 0, 0.58));
+    m.fromTo("#ph-3", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.65, ease: "expo.out" }, L(6, 1) + 0.15);
+
+    const endT = L(6, 2) + 0.12;
+    c.out("#s7-road", L(6, 2) - 0.12, 0.32);
+    m.fromTo("#s7-end", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.85, ease: "expo.out" }, endT);
+    c.rise(".end-eyebrow", endT + 0.05, 0.65, 20);
+    c.rise(".end-lead", endT + 0.2, 0.75, 30);
+    c.rise(".end-hero", endT + 0.45, 0.9, 40);
+    c.rise(".end-sub", endT + 0.75, 0.75, 20);
+  },
+
+  tick(t, c) {
+    // 1) S02: Software live bars
+    const swBars = document.querySelectorAll(".sw-bar");
+    swBars.forEach((b, idx) => {
+      const h = 24 + 44 * (0.5 + 0.5 * Math.sin(t * 2.6 + idx * 1.15));
+      b.style.height = h.toFixed(1) + "px";
+    });
+
+    // 2) S02: True 3D rotating icosahedron wireframe on #c3d
+    const c3 = c.$("#c3d");
+    if (c3) {
+      const ctx = c3.getContext("2d");
+      const W = c3.width, H = c3.height;
+      ctx.clearRect(0, 0, W, H);
+      // subtle grid
+      ctx.strokeStyle = "rgba(56,189,248,0.12)";
+      ctx.lineWidth = 1;
+      for (let gx = 0; gx <= W; gx += 46) {
+        ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke();
+      }
+      for (let gy = 0; gy <= H; gy += 42) {
+        ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
+      }
+      const phi = (1 + Math.sqrt(5)) / 2;
+      const rawV = [
+        [-1, phi, 0], [1, phi, 0], [-1, -phi, 0], [1, -phi, 0],
+        [0, -1, phi], [0, 1, phi], [0, -1, -phi], [0, 1, -phi],
+        [phi, 0, -1], [phi, 0, 1], [-phi, 0, -1], [-phi, 0, 1]
+      ];
+      const edges = [
+        [0,11],[0,5],[0,1],[0,7],[0,10],
+        [1,5],[5,11],[11,10],[10,7],[7,1],
+        [3,9],[3,4],[3,2],[3,6],[3,8],
+        [4,9],[2,4],[6,2],[8,6],[9,8],
+        [4,5],[4,11],[11,2],[2,10],[10,6],[6,7],[7,8],[8,1],[1,9],[9,5]
+      ];
+      const ay = t * 0.9, ax = t * 0.55;
+      const cy = Math.cos(ay), sy = Math.sin(ay);
+      const cx = Math.cos(ax), sx = Math.sin(ax);
+      const proj = rawV.map(([x, y, z]) => {
+        const x1 = x * cy - z * sy;
+        const z1 = x * sy + z * cy;
+        const y2 = y * cx - z1 * sx;
+        const z2 = y * sx + z1 * cx;
+        const sc = 210 / (4.4 - z2);
+        return [W / 2 + x1 * sc, H / 2 + y2 * sc, z2];
+      });
+      for (const [a, b] of edges) {
+        const va = proj[a], vb = proj[b];
+        const depth = (va[2] + vb[2]) * 0.5;
+        const alpha = Math.max(0.2, Math.min(0.95, 0.55 + depth * 0.22));
+        ctx.strokeStyle = depth > 0.3 ? `rgba(251,191,36,${alpha.toFixed(2)})` : `rgba(56,189,248,${alpha.toFixed(2)})`;
+        ctx.lineWidth = depth > 0.3 ? 2.4 : 1.5;
+        ctx.beginPath(); ctx.moveTo(va[0], va[1]); ctx.lineTo(vb[0], vb[1]); ctx.stroke();
+      }
+      for (const [px, py, pz] of proj) {
+        ctx.fillStyle = pz > 0.2 ? "#FBBF24" : "#38BDF8";
+        ctx.beginPath(); ctx.arc(px, py, pz > 0.2 ? 3.8 : 2.5, 0, Math.PI * 2); ctx.fill();
+      }
+    }
+
+    // 3) S02: Multi-track film timeline & waveform on #cwave
+    const cw = c.$("#cwave");
+    if (cw) {
+      const ctx = cw.getContext("2d");
+      const W = cw.width, H = cw.height;
+      ctx.clearRect(0, 0, W, H);
+      // Timeline clip tracks
+      const tracks = [
+        { y: 26, h: 28, col: "rgba(56,189,248,0.45)", segs: [[20, 110], [142, 150], [306, 130]] },
+        { y: 66, h: 28, col: "rgba(251,191,36,0.45)", segs: [[40, 140], [194, 100], [310, 118]] },
+        { y: 106, h: 28, col: "rgba(52,211,153,0.4)", segs: [[24, 195], [235, 195]] }
+      ];
+      tracks.forEach((tr) => {
+        ctx.fillStyle = "rgba(30,41,59,0.55)";
+        ctx.fillRect(16, tr.y, W - 32, tr.h);
+        tr.segs.forEach(([sx, sw]) => {
+          ctx.fillStyle = tr.col;
+          ctx.fillRect(sx, tr.y + 3, sw, tr.h - 6);
+        });
+      });
+      // Audio waveform bars at bottom
+      const nBars = 34;
+      for (let i = 0; i < nBars; i++) {
+        const env = 0.35 + 0.65 * Math.abs(Math.sin(t * 3.1 + i * 0.42) * Math.cos(t * 1.4 - i * 0.21));
+        const bh = 14 + env * 62;
+        const bx = 22 + i * 12.4;
+        ctx.fillStyle = i % 5 === 0 ? "#FBBF24" : "#38BDF8";
+        ctx.fillRect(bx, 224 - bh, 7, bh);
+      }
+      // Playhead
+      const px = 20 + ((t * 78) % (W - 40));
+      ctx.strokeStyle = "#FB7185";
+      ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(px, 14); ctx.lineTo(px, H - 14); ctx.stroke();
+      ctx.fillStyle = "#FB7185";
+      ctx.beginPath(); ctx.arc(px, 14, 5, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // 4) S03: Gentle orbital ring rotation
+    const ring = c.$("#s3-ring");
+    if (ring) {
+      ring.setAttribute("transform", `rotate(${(t * 8).toFixed(2)} 475 365)`);
+    }
+
+    // 5) S05: Flow particle stream on #cflow5
+    const cf = c.$("#cflow5");
+    if (cf) {
+      const ctx = cf.getContext("2d");
+      const W = cf.width, H = cf.height;
+      ctx.clearRect(0, 0, W, H);
+      // 4 input lines from left to center, 2 output lines to right
+      const inY = [46, 136, 226, 316];
+      const outY = [105, 260];
+      ctx.lineWidth = 2.5;
+      inY.forEach((y, i) => {
+        ctx.strokeStyle = "rgba(251,113,133,0.35)";
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.bezierCurveTo(105, y, 110, H / 2, 185, H / 2); ctx.stroke();
+        const u = (t * 0.65 + i * 0.25) % 1;
+        const px = u * 185;
+        const py = y + (H / 2 - y) * (u * u * (3 - 2 * u));
+        ctx.fillStyle = "#FB7185";
+        ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2); ctx.fill();
+      });
+      outY.forEach((y, i) => {
+        ctx.strokeStyle = "rgba(52,211,153,0.45)";
+        ctx.beginPath(); ctx.moveTo(495, H / 2); ctx.bezierCurveTo(565, H / 2, 575, y, W, y); ctx.stroke();
+        const u = (t * 0.72 + i * 0.45) % 1;
+        const px = 495 + u * (W - 495);
+        const py = H / 2 + (y - H / 2) * (u * u * (3 - 2 * u));
+        ctx.fillStyle = "#34D399";
+        ctx.beginPath(); ctx.arc(px, py, 5.5, 0, Math.PI * 2); ctx.fill();
+      });
+    }
+
+    // 6) S01 & S07: Deterministic volumetric portal glow breathing
+    const arch1 = c.$("#portal-s1 .door-arch");
+    if (arch1) {
+      const b1 = 0.5 + 0.5 * Math.sin(t * 2.1);
+      const r1 = (95 + 36 * b1).toFixed(1);
+      const r2 = (55 + 26 * b1).toFixed(1);
+      const a1 = (0.30 + 0.24 * b1).toFixed(3);
+      const a2 = (0.20 + 0.16 * b1).toFixed(3);
+      const ai = (0.18 + 0.14 * b1).toFixed(3);
+      arch1.style.boxShadow = `0 0 ${r1}px rgba(251,191,36,${a1}), 0 0 ${r2}px rgba(56,189,248,${a2}), inset 0 0 ${(26 + 18 * b1).toFixed(1)}px rgba(251,191,36,${ai})`;
+      const beam1 = c.$("#portal-s1 .door-beam");
+      if (beam1) {
+        beam1.style.opacity = (0.76 + 0.24 * b1).toFixed(3);
+        beam1.style.transform = `translate(-50%, -50%) scale(${(0.97 + 0.06 * b1).toFixed(4)})`;
+      }
+    }
+
+    const endDoor = c.$("#s7-end .end-glow-door");
+    if (endDoor) {
+      const b7 = 0.5 + 0.5 * Math.sin(t * 1.75 + 0.9);
+      endDoor.style.boxShadow = `0 0 ${(125 + 48 * b7).toFixed(1)}px rgba(251,191,36,${(0.18 + 0.16 * b7).toFixed(3)}), 0 0 ${(72 + 32 * b7).toFixed(1)}px rgba(56,189,248,${(0.10 + 0.12 * b7).toFixed(3)}), inset 0 0 ${(36 + 22 * b7).toFixed(1)}px rgba(251,191,36,${(0.08 + 0.10 * b7).toFixed(3)})`;
+      endDoor.style.borderColor = `rgba(251,191,36,${(0.38 + 0.22 * b7).toFixed(3)})`;
+      endDoor.style.transform = `scale(${(0.99 + 0.02 * b7).toFixed(4)})`;
+    }
+
+    // 7) Deterministic 4px bottom timeline progress bar
+    const pb = c.$("#prog-bar");
+    if (pb) {
+      const total = (c.TL && c.TL.total) || 1;
+      const pct = Math.max(0, Math.min(1, t / total)) * 100;
+      pb.style.width = pct.toFixed(3) + "%";
+    }
+  }
+};
+</script>
+<script src="_runtime/runtime.js"></script>
+</body>
+</html>
